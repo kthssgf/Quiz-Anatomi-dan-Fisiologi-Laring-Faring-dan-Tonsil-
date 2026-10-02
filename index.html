@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kuis UKMPPD THT – Anatomi Laring, Faring, Tonsil</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f6fb;--card:#fff;--tx:#1b2333;--mu:#64708a;--br:#d8deeb;--pr:#2f5597;--ok:#1e8e4e;--okb:#e4f5ea;--no:#c0392b;--nob:#fbe9e7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141f;--card:#19202f;--tx:#e8ecf5;--mu:#94a0ba;--br:#2c364c;--pr:#7ea3e6;--okb:#143324;--nob:#3a1d1a;--ok:#56c785;--no:#ef7a6c}}
+:root[data-theme="dark"]{--bg:#10141f;--card:#19202f;--tx:#e8ecf5;--mu:#94a0ba;--br:#2c364c;--pr:#7ea3e6;--okb:#143324;--nob:#3a1d1a;--ok:#56c785;--no:#ef7a6c}
+*{box-sizing:border-box}html,body{margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.w{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;margin:.2rem 0}
+.card{background:var(--card);border:1px solid var(--br);border-radius:14px;padding:18px;margin-top:14px}
+.mu{color:var(--mu);font-size:.9rem}
+.bar{height:6px;background:var(--br);border-radius:9px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:var(--pr);transition:width .3s}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tag{font-size:.75rem;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--pr);color:#fff}
+.q{margin:12px 0;font-size:1.02rem}
+.o{display:flex;gap:10px;width:100%;text-align:left;background:var(--card);color:var(--tx);border:1.5px solid var(--br);border-radius:10px;padding:10px 12px;margin:8px 0;font:inherit;cursor:pointer}
+.o:hover:not(:disabled){border-color:var(--pr)}
+.o b{flex:none;width:24px;height:24px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:.8rem}
+.o.ok{background:var(--okb);border-color:var(--ok)}.o.no{background:var(--nob);border-color:var(--no)}
+.ex{margin-top:12px;padding:12px;border-radius:10px;background:var(--bg);border-left:4px solid var(--pr);font-size:.93rem}
+.btn{background:var(--pr);color:#fff;border:0;border-radius:10px;padding:11px 20px;font:inherit;font-weight:600;cursor:pointer;margin-top:14px}
+.btn.g{background:transparent;color:var(--pr);border:1.5px solid var(--pr)}
+.big{font-size:2.6rem;font-weight:800;color:var(--pr)}
+.rv{border-top:1px solid var(--br);padding:10px 0;font-size:.9rem}
+</style></head><body><div class="w" id="app"></div>
+<script>
+// Format: [level, soal, [jawaban BENAR, salah, salah, salah, salah], pembahasan]
+const D=[
+["C1","Pria 45 tahun dengan benjolan leher dan hidung tersumbat unilateral; dicurigai karsinoma nasofaring. Predileksi tumor paling sering berada di…",["Fossa Rosenmuller","Torus tubarius","Valekula","Fossa piriformis","Fossa supratonsil"],"Predileksi karsinoma nasofaring paling sering adalah fossa Rosenmuller (resesus faringeus)."],
+["C1","Pembagian faring dari superior ke inferior yang benar adalah…",["Nasofaring, orofaring, laringofaring (hipofaring)","Orofaring, nasofaring, hipofaring","Epifaring, mesofaring, supraglotis","Hipofaring, orofaring, laring","Nasofaring, laring, esofagus"],"Faring terbagi tiga: nasofaring (epifaring), orofaring (mesofaring), dan laringofaring (hipofaring)."],
+["C1","Struktur yang terdapat di nasofaring adalah…",["Ostium tuba Eustachii, adenoid, fossa Rosenmuller, torus tubarius","Tonsil palatina dan tonsil lingualis","Valekula dan fossa piriformis","Pita suara","Kartilago krikoid"],"Bangunan nasofaring: ostium tuba, adenoid, fossa Rosenmuller, ismus nasofaring, torus tubarius."],
+["C2","Pasien datang dengan keluhan tablet obat terasa tersangkut di tenggorok setelah diminum. Lokasi tersering tersangkutnya benda tersebut?",["Fossa piriformis","Fossa Rosenmuller","Fossa supratonsil","Torus tubarius","Ismus nasofaring"],"Fossa piriformis (sinus piriformis) pada laringofaring merupakan tempat tersering benda/pil tersangkut."],
+["C1","Batas anterior orofaring adalah…",["Kavum oris","Koana","Epiglotis","Vertebra servikal 3,4,5,6","Palatum mole"],"Orofaring: depan kavum oris, atas palatum mole, belakang vertebra servikal 2–3, bawah epiglotis."],
+["C2","Bangunan yang terdapat pada orofaring adalah…",["Tonsil palatina, fossa supratonsil, tonsil lingualis","Adenoid dan fossa Rosenmuller","Valekula dan fossa piriformis","Torus tubarius","Ostium tuba"],"Bangunan orofaring: tonsil palatina, fossa supratonsil, tonsil lingualis."],
+["C2","Epitel mukosa faring bagian superior (nasofaring) yang sesuai fungsi respirasi adalah…",["Kolumnar pseudokompleks bersilia","Skuamosa kompleks tanpa silia","Kuboid selapis","Transisional tanpa silia","Gepeng selapis"],"Bagian superior berfungsi respirasi dengan epitel kolumnar kompleks bersilia; orofaring dan laringofaring berepitel skuamosa kompleks."],
+["C1","Enzim pada mucous blanket faring yang berfungsi sebagai proteksi adalah…",["Lisozim","Amilase","Pepsin","Tripsin","Lipase"],"Mucous blanket menangkap partikel kotoran dan mengandung enzim lisozim untuk proteksi."],
+["C2","Otot longitudinal faring yang penting saat menelan dan dipersarafi n. IX adalah…",["M. stilofaring","M. konstriktor faring superior","M. konstriktor faring media","M. palatofaring","M. krikotiroid"],"M. stilofaring dipersarafi n. IX; m. palatofaring oleh n. X; otot sirkular konstriktor oleh n. X."],
+["C1","Komponen cincin Waldeyer adalah…",["Adenoid, tonsil tuba, tonsil palatina, tonsil lingualis","Tonsil palatina saja","Adenoid dan laring","Epiglotis dan valekula","Kelenjar parotis dan submandibula"],"Cincin Waldeyer: jaringan limfoid adenoid (nasofaring), tonsil tuba, tonsil palatina, dan tonsil lingualis."],
+["C1","Kripte tonsil palatina bersifat…",["Banyak, dalam, bercabang, diisi detritus","Sedikit dan dangkal","Tanpa percabangan","Tidak berisi apa pun","Dilapisi epitel bersilia"],"Kripte tonsil banyak, dalam, bercabang, berisi detritus (epitel, leukosit, bakteri, sisa makanan)."],
+["C2","Kartilago laring yang berbentuk cincin lengkap dan terletak paling bawah adalah…",["Krikoid","Tiroid","Epiglotis","Aritenoid","Kornikulata"],"Krikoid adalah satu-satunya cincin kartilago yang kompit di laring."],
+["C1","Kartilago laring yang tidak berpasangan adalah…",["Tiroid, krikoid, epiglotis","Aritenoid, kornikulata, kuneiform","Tiroid, aritenoid, kuneiform","Krikoid, kornikulata, epiglotis","Epiglotis, aritenoid, kuneiform"],"Tiga kartilago tidak berpasangan: tiroid, krikoid, epiglotis; berpasangan: aritenoid, kornikulata, kuneiform."],
+["C1","Fungsi utama laring adalah…",["Fonasi (vokalisasi), proteksi, respirasi","Hanya respirasi","Hanya menelan","Pencernaan","Olfaktori"],"Fungsi laring: proteksi, respirasi, fonasi, dan membantu proses menelan."],
+["C2","Otot intrinsik laring yang merupakan satu-satunya abduktor pita suara adalah…",["M. krikoaritenoid posterior","M. krikoaritenoid lateral","M. interaritenoid","M. krikotiroid","M. vokalis"],"Abduktor: m. krikoaritenoid posterior; adduktor: interaritenoid, krikoaritenoid lateral, krikotiroid."],
+["C3","Wanita 40 tahun mengeluh sering tersedak obat; pemeriksaan hipofaring menunjukkan retensi saliva. Struktur hipofaring yang dimaksud adalah…",["Fossa piriformis dan valekula","Fossa Rosenmuller dan torus","Tonsil palatina dan fossa supratonsil","Koana dan ismus nasofaring","Kavum oris"],"Bangunan hipofaring: laring (depan), fossa (sinus) piriformis, dan valekula; batas atas orofaring, bawah porta esofagus."],
+["C3","Seorang anak 5 tahun sering tonsilitis; pada tonsil tampak kripte melebar berisi detritus putih. Isi detritus tersebut terdiri atas…",["Epitel, leukosit, bakteri, sisa makanan","Hanya darah","Hanya pus steril","Jaringan lemak","Kristal kalsium"],"Kripte tonsil bercabang dan dalam sehingga diisi detritus: epitel, leukosit, bakteri, sisa makanan."],
+["C3","Pasien pasca-tiroidektomi mengalami suara serak karena kedua pita suara tidak dapat dibuka (adduksi). Otot yang lumpuh pada pergerakan abduksi adalah…",["M. krikoaritenoid posterior","M. krikotiroid","M. interaritenoid","M. tiroaritenoid","M. vokalis"],"Abduktor tunggal pita suara adalah m. krikoaritenoid posterior (n. laringeus rekuren)."],
+["C3","Pada fonasi, saraf yang mempersarafi laring berperan adalah…",["N. laringeus eksternus dan n. laringeus rekuren","N. fasialis","N. trigeminus","N. hipoglosus","N. glosofaringeus"],"Inervasi fonasi: n. laringeus eksternus (superior) dan n. laringeus rekuren."],
+["C3","Pasien disfagia disertai kesulitan menelan setelah stroke; otot faring sirkular konstriktor superior, media, inferior yang berfungsi mengecilkan lumen dipersarafi…",["N. X (vagus)","N. IX","N. VII","N. XII","N. V"],"Otot sirkular (konstriktor faring) mengecilkan lumen dengan persarafan n. X; stilofaring n. IX."],
+["C3","Vaskularisasi setengah bagian atas laring berasal dari…",["Ramus laringeus superior a. tiroidea superior","Ramus laringeus inferior a. tiroidea inferior","A. karotis interna","A. vertebralis","A. lingualis"],"Setengah atas laring: r. laringeus superior a. tiroidea superior; setengah bawah: r. laringeus inferior a. tiroidea inferior."],
+["C4","Karsinoma laring supraglotis menunjukkan metastasis ke kelenjar getah bening leher. Kelompok KGB yang pertama kali terlibat berada di…",["Kelompok jugularis superior dan media","Hanya kelenjar aksila","Kelompok inguinal","Kelenjar mesenterika","Kelenjar popliteal"],"Aliran limfe laring menuju kelompok jugularis superior, media, dan inferior (juga nodus pretrakeal/Delphian)."],
+["C4","Pada kasus aspirasi, mekanisme proteksi laring yang terjadi saat menelan adalah…",["Kontraksi otot ekstrinsik menutup aditus laring dan adduksi plika vokalis menutup rima glotis","Pembukaan rima glotis lebar","Relaksasi otot konstriktor","Abduksi pita suara","Tertutupnya koana saja"],"Proteksi laring: aditus laring ditutup oleh kontraksi otot ekstrinsik dan rima glotis ditutup adduksi plika vokalis oleh otot intrinsik."],
+["C4","Seorang penyanyi mengalami penurunan nada tinggi (pitch) akibat paresis n. laringeus eksternus. Otot yang terganggu ketegangan pita suaranya adalah…",["M. krikotiroid (tensor)","M. krikoaritenoid posterior","M. interaritenoid","M. aritenoid transversus","M. stilofaring"],"Tensor pita suara: m. krikotiroid, m. tiroaritenoid, dan vokalis; krikotiroid dipersarafi n. laringeus eksternus."],
+["C4","Anak dengan adenoid hipertrofi sering mengalami otitis media. Mekanisme yang paling tepat?",["Adenoid menyumbat ostium tuba Eustachii di nasofaring","Adenoid menekan epiglotis","Adenoid menutup glotis","Adenoid menekan esofagus","Adenoid merusak membran timpani"],"Adenoid berada di nasofaring dekat ostium tuba; pembesaran dapat menyumbat tuba sehingga predisposisi otitis media."],
+["C4","Pasien dengan massa di piriformis kanan mengeluh disfagia dan nyeri alih ke telinga. Letak anatomis lesi pada pembagian laring dan faring yang benar?",["Hipofaring (laringofaring), lateral laring","Nasofaring","Orofaring","Subglotis","Kavum oris"],"Fossa piriformis adalah bagian hipofaring, terletak lateral dari laring (aditus laringis)."],
+["C4","Pada pembagian laring, regio yang terletak antara pita suara (glotis) dan batas bawah kartilago krikoid adalah…",["Subglotis","Supraglotis","Transglotis","Hipofaring","Valekula"],"Laring terbagi supraglotis (epiglotis sampai ventrikel), glotis (pita suara), dan subglotis (di bawah glotis sampai tepi bawah krikoid)."],
+["C3","Pada proses pembentukan suara, urutan yang benar adalah…",["Udara ekspirasi melalui glotis → pita suara bergetar → resonansi dan artikulasi","Resonansi → getaran pita suara → udara ekspirasi","Artikulasi → fonasi → inspirasi","Pita suara bergetar → udara inspirasi → resonansi","Resonansi → glotis → artikulasi"],"Fonasi: udara ekspirasi melalui glotis menggetarkan pita suara, lalu suara diresonansi dan diartikulasikan (bibir, mulut)."],
+["C4","Pasien setelah operasi leher mengalami suara serak ringan dengan pita suara paramedian, tidak ada stridor. Faktor yang menentukan frekuensi/nada suara menurut slide adalah…",["Panjang, ketegangan, ketebalan pita suara, pembukaan rima glotis, tekanan udara ekspirasi","Hanya volume paru","Hanya ukuran tonsil","Hanya posisi lidah","Hanya ukuran epiglotis"],"Faktor yang mempengaruhi frekuensi, pitch, loudness, timbre: panjang, ketegangan, ketebalan pita suara, rima glotis, dan tekanan udara ekspirasi."]
+,
+["C4","Pria 50 tahun dengan rasa mengganjal di pangkal lidah; pada pemeriksaan tampak jaringan limfoid hipertrofik di sepertiga posterior lidah. Bagian cincin Waldeyer yang terlibat?",["Tonsil lingualis","Adenoid (tonsil Lushka)","Tonsil tuba","Tonsil palatina","Tonsil nasofaringea"],"Tonsil lingualis berada di dasar lidah (sepertiga posterior) dan merupakan bagian bawah cincin Waldeyer di orofaring."]
+];
+const $=id=>document.getElementById(id),app=$('app');
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let Q,i,score,log;
+function start(){Q=sh(D).map(d=>{const o=sh(d[2].map((t,k)=>({t,c:k===0})));return{l:d[0],q:d[1],o,e:d[3]}});i=0;score=0;log=[];show();scrollTo(0,0)}
+function intro(){app.innerHTML=`<h1>Kuis Kasus UKMPPD – Anatomi & Fisiologi</h1><p class="mu">Anatomi dan Fisiologi Laring, Faring, dan Tonsil.</p><div class="card"><p>30 soal kasus klinis (15 soal C1–C2 dan 15 soal C3–C4), 5 pilihan (A–E). Urutan soal dan pilihan diacak setiap kali kuis dimulai.</p><button class="btn" id="go">Mulai Kuis</button></div>`;$('go').onclick=start}
+function show(){if(i>=Q.length)return end();const q=Q[i];
+app.innerHTML=`<div class="top"><h1>Kuis THT</h1><span class="mu">Soal ${i+1}/${Q.length} · Skor ${score}</span></div><div class="bar"><i style="width:${i/Q.length*100}%"></i></div>
+<div class="card"><span class="tag">${q.l}</span><p class="q">${q.q}</p><div id="os">${q.o.map((o,k)=>`<button class="o" data-k="${k}"><b>${'ABCDE'[k]}</b><span>${o.t}</span></button>`).join('')}</div><div id="fb"></div></div>`;
+document.querySelectorAll('.o').forEach(b=>b.onclick=()=>pick(+b.dataset.k))}
+function pick(k){const q=Q[i],ok=q.o[k].c;if(ok)score++;log.push({q,ok,k});
+document.querySelectorAll('.o').forEach((b,n)=>{b.disabled=true;if(q.o[n].c)b.classList.add('ok');else if(n===k)b.classList.add('no')});
+$('fb').innerHTML=`<div class="ex"><b>${ok?'Benar ✓':'Salah ✗'}</b> — ${q.e}</div><button class="btn" id="nx">${i===Q.length-1?'Lihat Hasil':'Soal Berikutnya'}</button>`;
+$('nx').onclick=()=>{i++;show();scrollTo(0,0)}}
+function end(){const lv=l=>{const a=log.filter(x=>l.includes(x.q.l));return a.filter(x=>x.ok).length+'/'+a.length};
+const wr=log.filter(x=>!x.ok);
+app.innerHTML=`<h1>Hasil Kuis</h1><div class="card"><div class="big">${Math.round(score/Q.length*100)}%</div><p>Benar ${score} dari ${Q.length} soal.</p><p class="mu">C1–C2: ${lv(['C1','C2'])} · C3–C4: ${lv(['C3','C4'])}</p><button class="btn" id="rs">Ulangi (soal diacak ulang)</button></div>
+<div class="card"><b>Pembahasan soal yang salah (${wr.length})</b>${wr.length?wr.map(x=>`<div class="rv"><span class="tag">${x.q.l}</span> ${x.q.q}<br><span style="color:var(--no)">Jawabanmu: ${x.q.o[x.k].t}</span><br><span style="color:var(--ok)">Benar: ${x.q.o.find(o=>o.c).t}</span><br><span class="mu">${x.q.e}</span></div>`).join(''):'<p>Semua jawaban benar. Luar biasa!</p>'}</div>`;
+$('rs').onclick=start;scrollTo(0,0)}
+intro();
+</script></body></html>
